@@ -1,0 +1,55 @@
+#include <cstdio>
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+typedef struct Record
+{
+    long long EnterTime;
+    long long LeaveTime;
+    string id;
+}Record;
+
+Record record[10000];
+
+int main(void)
+{
+    int ncase = 0;
+    scanf("%d", &ncase);
+
+    while (ncase --)
+    {
+        int mrecord = 0;
+        scanf("%d", &mrecord);
+
+        int hh, mm, ss;
+        Record firstin, lastout;
+        long long mintime = 800000, maxtime = 0;
+
+        for (int i = 0; i < mrecord; ++i)
+        {
+            cin >> record[i].id;
+            scanf("%d:%d:%d", &hh, &mm, &ss);
+            record[i].EnterTime = ss + mm * 60 + hh * 3600;
+            if (record[i].EnterTime < mintime)
+            {
+                mintime = record[i].EnterTime;
+                firstin = record[i];
+            }
+
+            scanf("%d:%d:%d", &hh, &mm, &ss);
+            record[i].LeaveTime = ss + mm * 60 + hh * 3600;
+            if (record[i].LeaveTime > maxtime)
+            {
+                maxtime = record[i].LeaveTime;
+                lastout = record[i];
+            }
+        }
+
+        cout << firstin.id << ' ' << lastout.id << endl;
+    }
+
+    return 0;
+}
