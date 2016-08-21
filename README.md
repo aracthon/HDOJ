@@ -1,2 +1,2 @@
-# HOJ
-training from HOJ
+# HDOJ
+training from HDOJ
